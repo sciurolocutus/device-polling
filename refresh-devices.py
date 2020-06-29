@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import requests
 from datetime import datetime
 from pprint import pprint
@@ -59,7 +60,6 @@ def parse_devices_response(resp):
         if param['ParamName'] == 'Active':
             active = param['ParamValue'] == '1'
     by_mac_address[mac] = {'mac': mac, 'hostname': name, 'ip': ip, 'active': active}
-    pprint(obj)
   return by_mac_address
 
 if __name__ == '__main__':
@@ -89,8 +89,6 @@ if __name__ == '__main__':
 
   devices = parse_devices_response(devices_response)
   request_ts = datetime.now()
-
-  pprint(devices)
 
   # Initialize [in]active lists if not already.
   if not config.has_section('active'):
